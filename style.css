@@ -1,0 +1,192 @@
+:root {
+    --bg-main: #0f111a;
+    --bg-sidebar: #1a1d27;
+    --card-bg: #222634;
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --python-blue: #3776ab;
+    --python-yellow: #ffd43b;
+    --success: #10b981;
+    --border: #333a4d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Скипы для кода */
+code, pre { font-family: 'JetBrains Mono', monospace; }
+
+/* --- САЙДБАР --- */
+.sidebar {
+    width: 300px;
+    background-color: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 25px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    color: var(--python-yellow);
+}
+
+.py-icon { font-size: 28px; }
+
+.progress-container { margin-bottom: 30px; }
+.progress-text { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 10px; color: var(--text-muted); }
+.progress-bar-bg { width: 100%; height: 8px; background: var(--card-bg); border-radius: 4px; overflow: hidden; }
+.progress-bar-fill { height: 100%; width: 0%; background: var(--python-yellow); transition: width 0.5s ease; }
+
+.lesson-list { display: flex; flex-direction: column; gap: 10px; }
+
+.lesson-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.lesson-btn:hover { background: var(--card-bg); color: var(--text-main); }
+.lesson-btn.active { background: var(--card-bg); border-color: var(--python-blue); color: white; }
+
+.lesson-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: var(--bg-main); display: flex;
+    align-items: center; justify-content: center; font-weight: 700;
+}
+
+.lesson-btn.active .lesson-icon { background: var(--python-blue); }
+
+.check-mark { margin-left: auto; color: var(--success); opacity: 0; transition: 0.3s; font-weight: bold; }
+.lesson-btn.completed .check-mark { opacity: 1; }
+
+/* --- ОСНОВНОЙ КОНТЕНТ --- */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.topbar {
+    padding: 25px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-main);
+    position: sticky; top: 0; z-index: 10;
+}
+
+.topbar h1 { font-size: 20px; font-weight: 700; }
+.user-profile { background: var(--card-bg); padding: 8px 16px; border-radius: 20px; font-size: 14px; color: var(--python-yellow); }
+
+.lessons-container { padding: 40px 50px; max-width: 900px; margin: 0 auto; width: 100%; }
+
+.lesson-content { display: none; animation: fadeIn 0.4s ease; }
+.lesson-content.active-lesson { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+h2 { font-size: 32px; margin-bottom: 20px; color: #fff; }
+p { font-size: 16px; line-height: 1.7; color: var(--text-muted); margin-bottom: 25px; }
+
+/* --- БЛОК КОДА --- */
+.code-block {
+    background: #0d0f17;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.code-header {
+    background: #141722;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+}
+
+.run-btn {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.run-btn:hover { background: var(--success); color: #fff; }
+
+pre { padding: 20px; font-size: 15px; line-height: 1.5; overflow-x: auto; }
+
+/* Подсветка синтаксиса */
+.comment { color: #6b7280; font-style: italic; }
+.keyword { color: #c678dd; }
+.var { color: #e06c75; }
+.string { color: #98c379; }
+.number { color: #d19a66; }
+.func { color: #61afef; }
+
+.code-output {
+    background: #000;
+    color: #a7b6c2;
+    padding: 15px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.hidden { display: none; }
+
+/* --- КНОПКА ЗАВЕРШЕНИЯ --- */
+.lesson-footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+
+.complete-btn {
+    background: var(--python-blue);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.complete-btn:hover { background: #2c6394; transform: translateY(-2px); }
