@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyAcademy | Изучение Python</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="py-icon">🐍</span> PyAcademy
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-text">
+                <span>Прогресс курса</span>
+                <span id="progress-percent">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <nav class="lesson-list">
+            <button class="lesson-btn active" data-target="lesson-1">
+                <div class="lesson-icon">1</div>
+                <span>Переменные и данные</span>
+                <div class="check-mark">✓</div>
+            </button>
+            <button class="lesson-btn" data-target="lesson-2">
+                <div class="lesson-icon">2</div>
+                <span>Математика в коде</span>
+                <div class="check-mark">✓</div>
+            </button>
+            <button class="lesson-btn" data-target="lesson-3">
+                <div class="lesson-icon">3</div>
+                <span>Условия (if/else)</span>
+                <div class="check-mark">✓</div>
+            </button>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <header class="topbar">
+            <h1>Основы программирования</h1>
+            <div class="user-profile">Студент</div>
+        </header>
+
+        <div class="lessons-container">
+            
+            <section id="lesson-1" class="lesson-content active-lesson">
+                <h2>Урок 1: Что такое переменные?</h2>
+                <p>Представь, что переменная — это коробка, на которой ты написал маркером имя, а внутрь положил какое-то значение. В Python не нужно заранее говорить, какая это коробка, язык сам всё поймет.</p>
+                
+                <p>Давай создадим данные для персонажа:</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>main.py</span>
+                        <button class="run-btn" onclick="runCode('output-1', this)">▶ Запустить</button>
+                    </div>
+                    <pre><code><span class="comment"># Данные игрока</span>
+<span class="var">character</span> = <span class="string">"Heavy"</span>
+<span class="var">hp</span> = <span class="number">300</span>
+<span class="var">is_medic_ready</span> = <span class="keyword">True</span>
+
+<span class="func">print</span>(<span class="var">character</span>, <span class="string">"имеет"</span>, <span class="var">hp</span>, <span class="string">"здоровья."</span>)</code></pre>
+                    <div id="output-1" class="code-output hidden">
+                        > Heavy имеет 300 здоровья.
+                    </div>
+                </div>
+
+                <div class="lesson-footer">
+                    <button class="complete-btn" onclick="completeLesson(1, 'lesson-2')">Завершить урок и продолжить</button>
+                </div>
+            </section>
+
+            <section id="lesson-2" class="lesson-content">
+                <h2>Урок 2: Математика и автоматизация</h2>
+                <p>Компьютеры созданы для вычислений. В Python можно складывать <code>+</code>, вычитать <code>-</code>, умножать <code>*</code> и делить <code>/</code>. Давай напишем скрипт, который посчитает, сколько времени займет генерация изображений нейросетью.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>calc.py</span>
+                        <button class="run-btn" onclick="runCode('output-2', this)">▶ Запустить</button>
+                    </div>
+                    <pre><code><span class="comment"># Расчет времени генерации</span>
+<span class="var">images_count</span> = <span class="number">50</span>
+<span class="var">time_per_image</span> = <span class="number">2.5</span> <span class="comment"># секунды</span>
+
+<span class="var">total_time</span> = <span class="var">images_count</span> * <span class="var">time_per_image</span>
+<span class="func">print</span>(<span class="string">"Для генерации 50 картинок потребуется секунд:"</span>, <span class="var">total_time</span>)</code></pre>
+                    <div id="output-2" class="code-output hidden">
+                        > Для генерации 50 картинок потребуется секунд: 125.0
+                    </div>
+                </div>
+
+                <div class="lesson-footer">
+                    <button class="complete-btn" onclick="completeLesson(2, 'lesson-3')">Завершить урок и продолжить</button>
+                </div>
+            </section>
+
+            <section id="lesson-3" class="lesson-content">
+                <h2>Урок 3: Ветвления логики (if/else)</h2>
+                <p>Программа должна уметь принимать решения. Если условие верно (<code>True</code>), выполняется один блок кода, если нет (<code>False</code>) — другой.</p>
+                
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>logic.py</span>
+                        <button class="run-btn" onclick="runCode('output-3', this)">▶ Запустить</button>
+                    </div>
+                    <pre><code><span class="var">damage_taken</span> = <span class="number">150</span>
+<span class="var">current_hp</span> = <span class="number">300</span>
+
+<span class="keyword">if</span> <span class="var">damage_taken</span> >= <span class="var">current_hp</span>:
+    <span class="func">print</span>(<span class="string">"Персонаж уничтожен!"</span>)
+<span class="keyword">else</span>:
+    <span class="func">print</span>(<span class="string">"Медик! Срочно нужен хил!"</span>)</code></pre>
+                    <div id="output-3" class="code-output hidden">
+                        > Медик! Срочно нужен хил!
+                    </div>
+                </div>
+
+                <div class="lesson-footer">
+                    <button class="complete-btn" onclick="completeLesson(3, 'finish')">Завершить курс</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+                                               </html>
+                              
