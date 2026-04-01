@@ -16,18 +16,15 @@
             --python-blue: #3776ab;
             --python-yellow: #ffd43b;
             --success: #10b981;
-            --danger: #ef4444;
             --border: #2a2f42;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
         body { background-color: var(--bg-main); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; }
 
-        /* --- БОКОВАЯ ПАНЕЛЬ --- */
         .sidebar {
             width: 320px; background: var(--bg-sidebar); border-right: 1px solid var(--border);
-            display: flex; flex-direction: column; padding: 25px; transition: 0.3s; z-index: 10;
+            display: flex; flex-direction: column; padding: 25px; z-index: 10;
         }
 
         .logo { font-size: 22px; font-weight: 700; color: var(--python-yellow); margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
@@ -35,12 +32,9 @@
         .progress-box { margin-bottom: 25px; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; border: 1px solid var(--border); }
         .prog-text { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; }
         .bar-bg { width: 100%; height: 6px; background: #0f111a; border-radius: 10px; overflow: hidden; }
-        .bar-fill { height: 100%; width: 0%; background: var(--python-yellow); transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(255, 212, 59, 0.5); }
+        .bar-fill { height: 100%; width: 0%; background: var(--python-yellow); transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
 
-        .nav-list { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; padding-right: 5px; flex: 1; }
-        .nav-list::-webkit-scrollbar { width: 4px; }
-        .nav-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-
+        .nav-list { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; flex: 1; }
         .nav-item {
             background: none; border: 1px solid transparent; color: var(--text-muted);
             padding: 14px; border-radius: 10px; cursor: pointer; text-align: left;
@@ -51,81 +45,37 @@
         
         .num { width: 24px; height: 24px; background: var(--bg-main); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
         .nav-item.active .num { background: var(--python-blue); }
-        .check { margin-left: auto; color: var(--success); display: none; font-weight: bold; }
+        .check { margin-left: auto; color: var(--success); display: none; }
         .nav-item.done .check { display: block; }
 
-        /* --- ОСНОВНОЙ КОНТЕНТ --- */
-        .main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; scroll-behavior: smooth; position: relative; }
+        .main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; position: relative; }
+        .header { padding: 20px 40px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg-main); z-index: 5; }
         
-        .header { 
-            padding: 20px 40px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; 
-            position: sticky; top: 0; background: rgba(15, 17, 26, 0.95); backdrop-filter: blur(10px); z-index: 5; 
-        }
-
         .lesson-container { padding: 40px; max-width: 850px; margin: 0 auto; width: 100%; }
-        .lesson-page { display: none; animation: slideUp 0.4s ease-out; }
-        .lesson-page.active { display: block; }
+        .lesson-page { display: none; }
+        .lesson-page.active { display: block; animation: fadeIn 0.3s ease; }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        h2 { font-size: 28px; margin-bottom: 20px; letter-spacing: -0.5px; }
-        p { line-height: 1.6; color: var(--text-muted); margin-bottom: 20px; font-size: 16px; }
+        h2 { font-size: 28px; margin-bottom: 20px; }
+        p { line-height: 1.6; color: var(--text-muted); margin-bottom: 20px; }
 
-        /* --- БЛОК КОДА --- */
-        .code-area { background: #0b0d14; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 25px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .code-top { background: #131620; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono'; font-size: 12px; color: #64748b; border-bottom: 1px solid var(--border); }
-        .run-btn { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 11px; transition: 0.2s; }
-        .run-btn:hover { background: var(--success); color: #fff; }
-        .run-btn:disabled { background: #1e293b; color: #475569; border-color: transparent; cursor: not-allowed; }
+        .code-area { background: #0b0d14; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 25px 0; }
+        .code-top { background: #131620; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+        .run-btn { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 11px; }
         
-        pre { padding: 20px; font-family: 'JetBrains Mono'; font-size: 14px; color: #abb2bf; overflow-x: auto; line-height: 1.5; }
-        
-        .kw { color: #c678dd; } .st { color: #98c379; } .fn { color: #61afef; } .cm { color: #5c6370; font-style: italic; } .num-val { color: #d19a66; } .op { color: #56b6c2; } .cls { color: #e5c07b; }
+        pre { padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #abb2bf; overflow-x: auto; }
+        .kw { color: #c678dd; } .st { color: #98c379; } .fn { color: #61afef; } .num-val { color: #d19a66; }
 
-        .terminal { background: #000; padding: 15px 20px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono'; font-size: 13px; color: #a7b6c2; display: none; }
-        .term-success { color: #10b981; }
-        .term-error { color: #ef4444; }
-        .term-warn { color: #eab308; }
+        .terminal { background: #000; padding: 15px 20px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #a7b6c2; display: none; }
 
-        /* --- ПОДВАЛ УРОКА --- */
         .footer { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border); }
-        .next-btn { background: var(--python-blue); color: #fff; border: none; padding: 16px 32px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s; font-size: 15px; }
-        .next-btn:hover { background: #2c6394; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(55, 118, 171, 0.3); }
+        .next-btn { background: var(--python-blue); color: #fff; border: none; padding: 16px 32px; border-radius: 8px; font-weight: 700; cursor: pointer; }
 
-        /* --- МОДАЛЬНОЕ ОКНО --- */
-        .modal-overlay { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); 
-            display: flex; justify-content: center; align-items: center; 
-            z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; 
-        }
-        .modal-overlay.show { opacity: 1; pointer-events: auto; }
-        
-        .modal-box { 
-            background: var(--card-bg); padding: 40px; border-radius: 12px; 
-            border: 1px solid var(--python-blue); text-align: center; max-width: 450px; 
-            transform: translateY(20px); transition: transform 0.3s ease; 
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
-        .modal-overlay.show .modal-box { transform: translateY(0); }
-
-        .modal-icon { font-size: 48px; margin-bottom: 20px; }
-        .modal-title { font-size: 24px; color: #fff; margin-bottom: 15px; }
-        .modal-text { color: var(--text-muted); font-size: 15px; line-height: 1.6; margin-bottom: 30px; }
-        
-        .close-modal { background: var(--python-blue); color: #fff; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s; width: 100%; font-size: 15px; }
-        .close-modal:hover { background: #2c6394; }
-
-        /* --- АДАПТИВНОСТЬ --- */
-        @media (max-width: 800px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; padding: 15px; border-right: none; border-bottom: 1px solid var(--border); }
-            .nav-list { flex-direction: row; overflow-x: auto; padding-bottom: 10px; }
-            .nav-item { white-space: nowrap; padding: 10px; }
-            .logo { margin-bottom: 15px; }
-            .header { padding: 15px 20px; }
-            .lesson-container { padding: 20px; }
-        }
+        /* Модалка */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-box { background: var(--card-bg); padding: 40px; border-radius: 15px; text-align: center; max-width: 400px; border: 1px solid var(--python-blue); }
+        .close-modal { background: var(--python-blue); color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 20px; cursor: pointer; width: 100%; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -133,164 +83,196 @@
     <aside class="sidebar">
         <div class="logo">🐍 PyAcademy</div>
         <div class="progress-box">
-            <div class="prog-text"><span>Прогресс курса</span> <span id="p-val">0%</span></div>
+            <div class="prog-text"><span>Прогресс</span> <span id="p-val">0%</span></div>
             <div class="bar-bg"><div class="bar-fill" id="p-fill"></div></div>
         </div>
-        <nav class="nav-list">
+        <nav class="nav-list" id="nav-list">
             <button class="nav-item active" onclick="jump(1)" id="ni-1"><div class="num">1</div> Конфигурация <span class="check">✓</span></button>
             <button class="nav-item" onclick="jump(2)" id="ni-2"><div class="num">2</div> Вычисления <span class="check">✓</span></button>
-            <button class="nav-item" onclick="jump(3)" id="ni-3"><div class="num">3</div> Логика (If/Else) <span class="check">✓</span></button>
-            <button class="nav-item" onclick="jump(4)" id="ni-4"><div class="num">4</div> Списки (Lists) <span class="check">✓</span></button>
-            <button class="nav-item" onclick="jump(5)" id="ni-5"><div class="num">5</div> Циклы (For) <span class="check">✓</span></button>
-            <button class="nav-item" onclick="jump(6)" id="ni-6"><div class="num">6</div> Функции (Def) <span class="check">✓</span></button>
-            <button class="nav-item" onclick="jump(7)" id="ni-7"><div class="num">7</div> Словари (Dict) <span class="check">✓</span></button>
-            <button class="nav-item" onclick="jump(8)" id="ni-8"><div class="num">8</div> Ошибки (Try) <span class="check">✓</span></button>
+            <button class="nav-item" onclick="jump(3)" id="ni-3"><div class="num">3</div> Логика <span class="check">✓</span></button>
+            <button class="nav-item" onclick="jump(4)" id="ni-4"><div class="num">4</div> Списки <span class="check">✓</span></button>
+            <button class="nav-item" onclick="jump(5)" id="ni-5"><div class="num">5</div> Циклы <span class="check">✓</span></button>
+            <button class="nav-item" onclick="jump(6)" id="ni-6"><div class="num">6</div> Функции <span class="check">✓</span></button>
+            <button class="nav-item" onclick="jump(7)" id="ni-7"><div class="num">7</div> Словари <span class="check">✓</span></button>
+            <button class="nav-item" onclick="jump(8)" id="ni-8"><div class="num">8</div> Ошибки <span class="check">✓</span></button>
         </nav>
     </aside>
 
     <main class="main" id="main-scroll">
         <header class="header">
-            <span id="lesson-title" style="font-weight: 700;">Урок 1: Базовые настройки</span>
+            <h3 id="lesson-title">Урок 1: Базовые настройки</h3>
         </header>
 
         <div class="lesson-container">
-            
             <div id="p1" class="lesson-page active">
-                <h2>Конфигурация сервера (Переменные)</h2>
-                <p>Любая система начинается с настроек. Переменные хранят параметры, которые будут использоваться во всем скрипте. Зададим базовые параметры.</p>
+                <h2>Конфигурация (Переменные)</h2>
+                <p>Зададим настройки сервера. Переменные помогают хранить важные данные в одном месте.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>init_node.py</span> <button class="run-btn" onclick="run(1, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="kw">node_name</span> <span class="op">=</span> <span class="st">"Gateway-Alpha"</span>
-<span class="kw">max_connections</span> <span class="op">=</span> <span class="num-val">5000</span>
-<span class="kw">firewall_active</span> <span class="op">=</span> <span class="kw">True</span>
-
-<span class="fn">print</span>(<span class="st">"Инициализация узла:"</span>, node_name)
-<span class="fn">print</span>(<span class="st">"Лимит соединений:"</span>, max_connections)</code></pre>
-                    <div id="out1" class="terminal">> Инициализация узла: Gateway-Alpha<br>> Лимит соединений: 5000</div>
+                    <div class="code-top"><span>server.py</span> <button class="run-btn" onclick="run(1, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <pre><code><span class="kw">name</span> <span class="op">=</span> <span class="st">"Alpha-Server"</span>
+<span class="kw">port</span> <span class="op">=</span> <span class="num-val">8080</span>
+<span class="fn">print</span>(<span class="st">"Запуск на порту:"</span>, port)</code></pre>
+                    <div id="out1" class="terminal">> Запуск на порту: 8080</div>
                 </div>
-                <div class="footer"><button class="next-btn" onclick="done(1, 2)">Завершить и идти дальше</button></div>
+                <div class="footer"><button class="next-btn" onclick="done(1, 2)">Далее</button></div>
             </div>
 
             <div id="p2" class="lesson-page">
-                <h2>Вычисления нагрузки</h2>
-                <p>Рассчитаем пропускную способность канала. Скрипт должен заранее знать, хватит ли нам ширины канала для передачи бэкапов.</p>
+                <h2>Математика нагрузки</h2>
+                <p>Рассчитаем время передачи данных в системе.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>bandwidth.py</span> <button class="run-btn" onclick="run(2, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="kw">file_size_gb</span> <span class="op">=</span> <span class="num-val">150</span>
-<span class="kw">speed_mbps</span> <span class="op">=</span> <span class="num-val">800</span>
-
-<span class="kw">total_megabits</span> <span class="op">=</span> file_size_gb <span class="op">*</span> <span class="num-val">8192</span>
-<span class="kw">transfer_time_sec</span> <span class="op">=</span> total_megabits <span class="op">/</span> speed_mbps
-
-<span class="fn">print</span>(<span class="st">"Время передачи (сек):"</span>, transfer_time_sec)</code></pre>
-                    <div id="out2" class="terminal">> Время передачи (сек): 1536.0</div>
+                    <div class="code-top"><span>calc.py</span> <button class="run-btn" onclick="run(2, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <pre><code><span class="kw">size</span> <span class="op">=</span> <span class="num-val">1024</span>
+<span class="kw">speed</span> <span class="op">=</span> <span class="num-val">10</span>
+<span class="fn">print</span>(<span class="st">"Время:"</span>, size / speed, <span class="st">"сек."</span>)</code></pre>
+                    <div id="out2" class="terminal">> Время: 102.4 сек.</div>
                 </div>
-                <div class="footer"><button class="next-btn" onclick="done(2, 3)">Перейти к логике</button></div>
+                <div class="footer"><button class="next-btn" onclick="done(2, 3)">Далее</button></div>
             </div>
 
             <div id="p3" class="lesson-page">
-                <h2>Маршрутизация (If/Else)</h2>
-                <p>Управление доступом. Если IP-адрес входящего пакета не входит в белый список, мы обязаны сбросить соединение.</p>
+                <h2>Условия (If)</h2>
+                <p>Проверка доступа к системе через IP.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>firewall.py</span> <button class="run-btn" onclick="run(3, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="kw">incoming_ip</span> <span class="op">=</span> <span class="st">"192.168.1.105"</span>
-<span class="kw">allowed_subnet</span> <span class="op">=</span> <span class="st">"192.168.1."</span>
-
-<span class="kw">if</span> incoming_ip.<span class="fn">startswith</span>(allowed_subnet):
-    <span class="fn">print</span>(<span class="st">"Соединение установлено."</span>)
-<span class="kw">else</span>:
-    <span class="fn">print</span>(<span class="st">"Пакет отброшен (DROP)."</span>)</code></pre>
-                    <div id="out3" class="terminal"><span class="term-success">> Соединение установлено.</span></div>
+                    <div class="code-top"><span>auth.py</span> <button class="run-btn" onclick="run(3, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <pre><code><span class="kw">user_ip</span> <span class="op">=</span> <span class="st">"127.0.0.1"</span>
+<span class="kw">if</span> user_ip <span class="op">==</span> <span class="st">"127.0.0.1"</span>:
+    <span class="fn">print</span>(<span class="st">"Доступ разрешен"</span>)</code></pre>
+                    <div id="out3" class="terminal">> Доступ разрешен</div>
                 </div>
-                <div class="footer"><button class="next-btn" onclick="done(3, 4)">Изучить списки</button></div>
+                <div class="footer"><button class="next-btn" onclick="done(3, 4)">Далее</button></div>
             </div>
 
             <div id="p4" class="lesson-page">
-                <h2>Очереди задач (Lists)</h2>
-                <p>Списки идеальны для хранения логов или очередей процессов. Мы создадим очередь демонов, которые должны запуститься при старте сервера.</p>
+                <h2>Списки (Lists)</h2>
+                <p>Очередь системных задач.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>services.py</span> <button class="run-btn" onclick="run(4, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="kw">services</span> <span class="op">=</span> [<span class="st">"sshd"</span>, <span class="st">"nginx"</span>, <span class="st">"postgresql"</span>, <span class="st">"docker"</span>]
-
-<span class="fn">print</span>(<span class="st">"Служб в очереди:"</span>, <span class="fn">len</span>(services))
-<span class="fn">print</span>(<span class="st">"Приоритетная служба:"</span>, services[<span class="num-val">0</span>])</code></pre>
-                    <div id="out4" class="terminal">> Служб в очереди: 4<br>> Приоритетная служба: sshd</div>
+                    <div class="code-top"><span>tasks.py</span> <button class="run-btn" onclick="run(4, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <pre><code><span class="kw">queue</span> <span class="op">=</span> [<span class="st">"Backup"</span>, <span class="st">"Update"</span>, <span class="st">"Scan"</span>]
+<span class="fn">print</span>(<span class="st">"Первая задача:"</span>, queue[<span class="num-val">0</span>])</code></pre>
+                    <div id="out4" class="terminal">> Первая задача: Backup</div>
                 </div>
-                <div class="footer"><button class="next-btn" onclick="done(4, 5)">Перейти к циклам</button></div>
+                <div class="footer"><button class="next-btn" onclick="done(4, 5)">Далее</button></div>
             </div>
 
             <div id="p5" class="lesson-page">
-                <h2>Автоматизация (For)</h2>
-                <p>Вместо того чтобы вручную проверять каждый порт, мы поручим это циклу. Он пройдет по всему массиву и выполнит сканирование.</p>
+                <h2>Пожарная безопасность (Циклы)</h2>
+                <p>Автоматический опрос датчиков дыма.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>scanner.py</span> <button class="run-btn" onclick="run(5, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="kw">ports</span> <span class="op">=</span> [<span class="num-val">22</span>, <span class="num-val">80</span>, <span class="num-val">443</span>, <span class="num-val">3306</span>]
-
-<span class="kw">for</span> p <span class="kw">in</span> ports:
-    <span class="fn">print</span>(<span class="st">"Сканирование порта"</span>, p, <span class="st">"... ЗАКРЫТ"</span>)
-    
-<span class="fn">print</span>(<span class="st">"Аудит завершен."</span>)</code></pre>
-                    <div id="out5" class="terminal">> Сканирование порта 22 ... ЗАКРЫТ<br>> Сканирование порта 80 ... ЗАКРЫТ<br>> Сканирование порта 443 ... ЗАКРЫТ<br>> Сканирование порта 3306 ... ЗАКРЫТ<br><span class="term-success">> Аудит завершен.</span></div>
+                    <div class="code-top"><span>fire_safety.py</span> <button class="run-btn" onclick="run(5, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <pre><code><span class="kw">sensors</span> <span class="op">=</span> [<span class="st">"Hall"</span>, <span class="st">"Kitchen"</span>, <span class="st">"Garage"</span>]
+<span class="kw">for</span> s <span class="kw">in</span> sensors:
+    <span class="fn">print</span>(<span class="st">"Проверка датчика:"</span>, s, <span class="st">"- OK"</span>)</code></pre>
+                    <div id="out5" class="terminal">> Проверка датчика: Hall - OK<br>> Проверка датчика: Kitchen - OK<br>> Проверка датчика: Garage - OK</div>
                 </div>
-                <div class="footer"><button class="next-btn" onclick="done(5, 6)">Изучить функции</button></div>
+                <div class="footer"><button class="next-btn" onclick="done(5, 6)">Далее</button></div>
             </div>
 
             <div id="p6" class="lesson-page">
-                <h2>Модули кода (Функции)</h2>
-                <p>Когда код повторяется, его оборачивают в функцию. Это как создание собственной консольной команды.</p>
+                <h2>Функции (Def)</h2>
+                <p>Создание команды для пинга сервера.</p>
                 <div class="code-area">
                     <div class="code-top"><span>ping.py</span> <button class="run-btn" onclick="run(6, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="kw">def</span> <span class="fn">ping_server</span>(ip_address):
-    <span class="fn">print</span>(<span class="st">"Пинг узла:"</span>, ip_address)
-    <span class="fn">print</span>(<span class="st">"Ответ: 12ms"</span>)
+                    <pre><code><span class="kw">def</span> <span class="fn">ping</span>(ip):
+    <span class="fn">print</span>(<span class="st">"Пинг"</span>, ip, <span class="st">"завершен"</span>)
 
-<span class="fn">ping_server</span>(<span class="st">"10.0.0.1"</span>)
-<span class="fn">ping_server</span>(<span class="st">"8.8.8.8"</span>)</code></pre>
-                    <div id="out6" class="terminal">> Пинг узла: 10.0.0.1<br>> Ответ: 12ms<br>> Пинг узла: 8.8.8.8<br>> Ответ: 12ms</div>
+<span class="fn">ping</span>(<span class="st">"8.8.8.8"</span>)</code></pre>
+                    <div id="out6" class="terminal">> Пинг 8.8.8.8 завершен</div>
                 </div>
-                <div class="footer"><button class="next-btn" onclick="done(6, 7)">Перейти к базам данных</button></div>
+                <div class="footer"><button class="next-btn" onclick="done(6, 7)">Далее</button></div>
             </div>
 
             <div id="p7" class="lesson-page">
-                <h2>Базы данных (Словари)</h2>
-                <p>Словари хранят данные в формате «Ключ: Значение». Это идеальная структура для хранения профилей или конфигурации баз данных.</p>
+                <h2>Словари (Dict)</h2>
+                <p>Хранение данных администратора.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>db_config.py</span> <button class="run-btn" onclick="run(7, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="kw">db</span> <span class="op">=</span> {
-    <span class="st">"host"</span>: <span class="st">"localhost"</span>,
-    <span class="st">"user"</span>: <span class="st">"admin_root"</span>,
-    <span class="st">"port"</span>: <span class="num-val">5432</span>
-}
-
-<span class="fn">print</span>(<span class="st">"Подключение к хосту:"</span>, db[<span class="st">"host"</span>])
-<span class="fn">print</span>(<span class="st">"Порт:"</span>, db[<span class="st">"port"</span>])</code></pre>
-                    <div id="out7" class="terminal">> Подключение к хосту: localhost<br>> Порт: 5432</div>
+                    <div class="code-top"><span>admin.py</span> <button class="run-btn" onclick="run(7, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <pre><code><span class="kw">user</span> <span class="op">=</span> {<span class="st">"id"</span>: <span class="num-val">1</span>, <span class="st">"role"</span>: <span class="st">"root"</span>}
+<span class="fn">print</span>(<span class="st">"Ваша роль:"</span>, user[<span class="st">"role"</span>])</code></pre>
+                    <div id="out7" class="terminal">> Ваша роль: root</div>
                 </div>
-                <div class="footer"><button class="next-btn" onclick="done(7, 8)">Финальный урок</button></div>
+                <div class="footer"><button class="next-btn" onclick="done(7, 8)">Далее</button></div>
             </div>
 
             <div id="p8" class="lesson-page">
-                <h2>Отказоустойчивость (Try/Except)</h2>
-                <p>Блок <code>try/except</code> позволяет перехватить сбой (например, отсутствие файла) и выполнить резервный код, чтобы система не "упала".</p>
+                <h2>Ошибки (Try)</h2>
+                <p>Защита скрипта от падения.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>backup.py</span> <button class="run-btn" onclick="run(8, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <div class="code-top"><span>safe.py</span> <button class="run-btn" onclick="run(8, this)">▶ ЗАПУСТИТЬ</button></div>
                     <pre><code><span class="kw">try</span>:
-    <span class="kw">file</span> <span class="op">=</span> <span class="fn">open</span>(<span class="st">"backup.zip"</span>, <span class="st">"r"</span>)
-    <span class="fn">print</span>(<span class="st">"Файл открыт"</span>)
-<span class="kw">except</span> <span class="cls">FileNotFoundError</span>:
-    <span class="fn">print</span>(<span class="st">"ОШИБКА: Файл не найден!"</span>)
-    <span class="fn">print</span>(<span class="st">"Запуск резервного копирования..."</span>)</code></pre>
-                    <div id="out8" class="terminal"><span class="term-warn">> ОШИБКА: Файл не найден!</span><br>> Запуск резервного копирования...</div>
+    <span class="fn">print</span>(<span class="num-val">10</span> / <span class="num-val">0</span>)
+<span class="kw">except</span>:
+    <span class="fn">print</span>(<span class="st">"Ошибка: Деление на ноль!"</span>)</code></pre>
+                    <div id="out8" class="terminal">> Ошибка: Деление на ноль!</div>
                 </div>
                 <div class="footer"><button class="next-btn" onclick="done(8, 'end')">Завершить курс</button></div>
             </div>
-
         </div>
     </main>
 
-    <div class="modal-overlay" id="successModal">
+    <div class="modal-overlay" id="modal">
         <div class="modal-box">
-            <div class="modal-icon">🏆</div>
-            <h2 class="modal-title">Курс пройден!</h2>
-            <p class="modal-text">Поздравляем! Базовые навыки системного программирования на Python успешно освоены. Доступ к терминалу разрешен.</p>
-            <button class="close-modal" onclick="closeModal()
+            <div style="font-size: 50px;">🎉</div>
+            <h2 style="color:white; margin: 15px 0;">Курс пройден!</h2>
+            <p>Вы успешно изучили все базовые модули PyAcademy. Теперь вы готовы к созданию серьезных проектов!</p>
+            <button class="close-modal" onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        const titles = [
+            "Урок 1: Конфигурация", "Урок 2: Вычисления", "Урок 3: Логика",
+            "Урок 4: Списки", "Урок 5: Циклы", "Урок 6: Функции",
+            "Урок 7: Словари", "Урок 8: Ошибки"
+        ];
+        let finished = new Set();
+
+        function jump(n) {
+            // Убираем активный класс у всех страниц и кнопок
+            document.querySelectorAll('.lesson-page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            
+            // Активируем нужную страницу
+            const targetPage = document.getElementById('p' + n);
+            const targetNav = document.getElementById('ni-' + n);
+            
+            if (targetPage && targetNav) {
+                targetPage.classList.add('active');
+                targetNav.classList.add('active');
+                document.getElementById('lesson-title').innerText = titles[n-1];
+                document.getElementById('main-scroll').scrollTop = 0;
+            }
+        }
+
+        function run(id, btn) {
+            btn.innerText = '⚙ ЗАПУСК...';
+            btn.disabled = true;
+            setTimeout(() => {
+                document.getElementById('out' + id).style.display = 'block';
+                btn.innerText = 'ГОТОВО';
+            }, 600);
+        }
+
+        function done(curr, next) {
+            finished.add(curr);
+            document.getElementById('ni-' + curr).classList.add('done');
+            
+            // Прогресс
+            let p = Math.round((finished.size / 8) * 100);
+            document.getElementById('p-val').innerText = p + '%';
+            document.getElementById('p-fill').style.width = p + '%';
+
+            if (next === 'end') {
+                document.getElementById('modal').style.display = 'flex';
+            } else {
+                jump(next);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+    </html>
+                                                                                                                     
