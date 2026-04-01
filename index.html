@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyAcademy | AI Developer Course</title>
+    <title>PyAcademy | Python Course</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
@@ -36,7 +36,6 @@
         .bar-fill { height: 100%; width: 0%; background: var(--python-yellow); transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(255, 212, 59, 0.5); }
 
         .nav-list { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; padding-right: 5px; }
-        /* Кастомный скроллбар для сайдбара */
         .nav-list::-webkit-scrollbar { width: 4px; }
         .nav-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
@@ -76,12 +75,12 @@
         pre { padding: 20px; font-family: 'JetBrains Mono'; font-size: 14px; color: #abb2bf; overflow-x: auto; line-height: 1.5; }
         
         /* Подсветка синтаксиса IDE */
-        .kw { color: #c678dd; } /* Ключевые слова */
-        .st { color: #98c379; } /* Строки */
-        .fn { color: #61afef; } /* Функции */
-        .cm { color: #5c6370; font-style: italic; } /* Комментарии */
-        .num-val { color: #d19a66; } /* Числа */
-        .op { color: #56b6c2; } /* Операторы */
+        .kw { color: #c678dd; } 
+        .st { color: #98c379; } 
+        .fn { color: #61afef; } 
+        .cm { color: #5c6370; font-style: italic; } 
+        .num-val { color: #d19a66; } 
+        .op { color: #56b6c2; } 
 
         .terminal { background: #000; padding: 15px 20px; border-top: 1px solid var(--border); font-family: 'JetBrains Mono'; font-size: 13px; color: #a7b6c2; display: none; }
         .term-success { color: #10b981; }
@@ -114,7 +113,7 @@
         </div>
         <nav class="nav-list">
             <button class="nav-item active" onclick="jump(1)" id="ni-1"><div class="num">1</div> Переменные <span class="check">✓</span></button>
-            <button class="nav-item" onclick="jump(2)" id="ni-2"><div class="num">2</div> Математика <span class="check">✓</span></button>
+            <button class="nav-item" onclick="jump(2)" id="ni-2"><div class="num">2</div> Вычисления <span class="check">✓</span></button>
             <button class="nav-item" onclick="jump(3)" id="ni-3"><div class="num">3</div> Логика (If/Else) <span class="check">✓</span></button>
             <button class="nav-item" onclick="jump(4)" id="ni-4"><div class="num">4</div> Списки (Lists) <span class="check">✓</span></button>
             <button class="nav-item" onclick="jump(5)" id="ni-5"><div class="num">5</div> Циклы (For) <span class="check">✓</span></button>
@@ -124,101 +123,100 @@
     <main class="main" id="main-scroll">
         <header class="header">
             <span id="lesson-title" style="font-weight: 700;">Урок 1: Базовые настройки</span>
-            <div style="font-size: 12px; color: var(--python-yellow); font-weight: 700; letter-spacing: 1px;">AI DEVELOPER</div>
         </header>
 
         <div class="lesson-container">
             <div id="p1" class="lesson-page active">
                 <h2>Что такое переменные?</h2>
-                <p>Переменные — это контейнеры для хранения данных. При разработке ИИ в них часто хранят настройки модели: имя нейросети, версию или её статус.</p>
+                <p>Переменные — это контейнеры для хранения данных. В промышленном программировании в них часто хранят системные настройки: параметры сервера, версии баз данных или статусы.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>config.py</span> <button class="run-btn" onclick="run(1, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="cm"># Настройки нашей нейросети</span>
-<span class="kw">bot_name</span> <span class="op">=</span> <span class="st">"NeuralX"</span>
-<span class="kw">model_version</span> <span class="op">=</span> <span class="num-val">4.0</span>
-<span class="kw">is_active</span> <span class="op">=</span> <span class="kw">True</span>
+                    <div class="code-top"><span>server_config.py</span> <button class="run-btn" onclick="run(1, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <pre><code><span class="cm"># Настройки локального сервера</span>
+<span class="kw">server_name</span> <span class="op">=</span> <span class="st">"MainNode-01"</span>
+<span class="kw">uptime_hours</span> <span class="op">=</span> <span class="num-val">1024</span>
+<span class="kw">is_secure</span> <span class="op">=</span> <span class="kw">True</span>
 
-<span class="fn">print</span>(<span class="st">"Система:"</span>, bot_name)
-<span class="fn">print</span>(<span class="st">"Версия ядра:"</span>, model_version)</code></pre>
-                    <div id="out1" class="terminal">> Система: NeuralX<br>> Версия ядра: 4.0</div>
+<span class="fn">print</span>(<span class="st">"Сервер:"</span>, server_name)
+<span class="fn">print</span>(<span class="st">"Время непрерывной работы (часы):"</span>, uptime_hours)</code></pre>
+                    <div id="out1" class="terminal">> Сервер: MainNode-01<br>> Время непрерывной работы (часы): 1024</div>
                 </div>
                 <div class="footer"><button class="next-btn" onclick="done(1, 2)">Завершить и идти дальше</button></div>
             </div>
 
             <div id="p2" class="lesson-page">
-                <h2>Математика в коде</h2>
-                <p>Компьютеры обожают цифры. Давай напишем скрипт, который рассчитает, сколько времени потребуется нейросети для генерации пачки изображений.</p>
+                <h2>Вычисления в коде</h2>
+                <p>Компьютеры созданы для точных вычислений. Давай напишем скрипт, который рассчитает необходимый объем памяти для хранения резервных копий.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>calc_time.py</span> <button class="run-btn" onclick="run(2, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <div class="code-top"><span>storage_calc.py</span> <button class="run-btn" onclick="run(2, this)">▶ ЗАПУСТИТЬ</button></div>
                     <pre><code><span class="cm"># Вводные данные</span>
-<span class="kw">batch_size</span> <span class="op">=</span> <span class="num-val">15</span> <span class="cm"># количество картинок</span>
-<span class="kw">time_per_image</span> <span class="op">=</span> <span class="num-val">1.2</span> <span class="cm"># секунд на одну генерацию</span>
+<span class="kw">files_count</span> <span class="op">=</span> <span class="num-val">450</span> <span class="cm"># количество файлов</span>
+<span class="kw">size_per_file</span> <span class="op">=</span> <span class="num-val">2.5</span> <span class="cm"># размер в гигабайтах</span>
 
 <span class="cm"># Расчет</span>
-<span class="kw">total_time</span> <span class="op">=</span> batch_size <span class="op">*</span> time_per_image
+<span class="kw">total_storage</span> <span class="op">=</span> files_count <span class="op">*</span> size_per_file
 
-<span class="fn">print</span>(<span class="st">"Генерация займет:"</span>, total_time, <span class="st">"секунд."</span>)</code></pre>
-                    <div id="out2" class="terminal">> Генерация займет: 18.0 секунд.</div>
+<span class="fn">print</span>(<span class="st">"Требуется памяти для бэкапа:"</span>, total_storage, <span class="st">"ГБ."</span>)</code></pre>
+                    <div id="out2" class="terminal">> Требуется памяти для бэкапа: 1125.0 ГБ.</div>
                 </div>
                 <div class="footer"><button class="next-btn" onclick="done(2, 3)">Перейти к логике</button></div>
             </div>
 
             <div id="p3" class="lesson-page">
                 <h2>Ветвления логики (If/Else)</h2>
-                <p>Программа должна принимать решения. Напишем фильтр: если пользователь вводит слишком длинный промпт (запрос) для генерации логотипа, ИИ выдаст ошибку.</p>
+                <p>Программа должна уметь принимать решения автономно. Напишем фильтр проверки пароля: если пароль слишком короткий, система откажет в доступе.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>prompt_check.py</span> <button class="run-btn" onclick="run(3, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="kw">prompt</span> <span class="op">=</span> <span class="st">"Нарисуй крутой логотип для бренда одежды в стиле минимализм"</span>
-<span class="kw">max_length</span> <span class="op">=</span> <span class="num-val">40</span>
+                    <div class="code-top"><span>auth_check.py</span> <button class="run-btn" onclick="run(3, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <pre><code><span class="kw">password</span> <span class="op">=</span> <span class="st">"admin123"</span>
+<span class="kw">min_length</span> <span class="op">=</span> <span class="num-val">12</span>
 
 <span class="cm"># Функция len() считает количество символов</span>
-<span class="kw">if</span> <span class="fn">len</span>(prompt) <span class="op">></span> max_length:
-    <span class="fn">print</span>(<span class="st">"ОШИБКА: Запрос слишком длинный!"</span>)
+<span class="kw">if</span> <span class="fn">len</span>(password) <span class="op"><</span> min_length:
+    <span class="fn">print</span>(<span class="st">"ОШИБКА БЕЗОПАСНОСТИ: Пароль слишком короткий!"</span>)
 <span class="kw">else</span>:
-    <span class="fn">print</span>(<span class="st">"Запрос принят к обработке."</span>)</code></pre>
-                    <div id="out3" class="terminal"><span class="term-error">> ОШИБКА: Запрос слишком длинный!</span></div>
+    <span class="fn">print</span>(<span class="st">"Доступ разрешен. Добро пожаловать."</span>)</code></pre>
+                    <div id="out3" class="terminal"><span class="term-error">> ОШИБКА БЕЗОПАСНОСТИ: Пароль слишком короткий!</span></div>
                 </div>
                 <div class="footer"><button class="next-btn" onclick="done(3, 4)">Изучить списки</button></div>
             </div>
 
             <div id="p4" class="lesson-page">
                 <h2>Списки (Lists)</h2>
-                <p>Когда данных много, их неудобно хранить в разных переменных. Списки позволяют хранить целые коллекции — например, очередь запросов на создание мемов.</p>
+                <p>Когда данных много, их неудобно хранить в разных переменных. Списки позволяют хранить целые коллекции — например, очередь важных системных задач.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>queue.py</span> <button class="run-btn" onclick="run(4, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="cm"># Массив (список) задач квадратных скобках</span>
-<span class="kw">tasks</span> <span class="op">=</span> [<span class="st">"мем про физику"</span>, <span class="st">"кот-программист"</span>, <span class="st">"киберпанк город"</span>]
+                    <div class="code-top"><span>task_queue.py</span> <button class="run-btn" onclick="run(4, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <pre><code><span class="cm"># Массив (список) задач в квадратных скобках</span>
+<span class="kw">tasks</span> <span class="op">=</span> [<span class="st">"бэкап базы данных"</span>, <span class="st">"проверка логов"</span>, <span class="st">"обновление антивируса"</span>]
 
 <span class="fn">print</span>(<span class="st">"Всего задач в очереди:"</span>, <span class="fn">len</span>(tasks))
 <span class="cm"># В программировании счет начинается с нуля!</span>
-<span class="fn">print</span>(<span class="st">"Сейчас обрабатывается:"</span>, tasks[<span class="num-val">0</span>])</code></pre>
-                    <div id="out4" class="terminal">> Всего задач в очереди: 3<br>> Сейчас обрабатывается: мем про физику</div>
+<span class="fn">print</span>(<span class="st">"Текущая задача:"</span>, tasks[<span class="num-val">0</span>])</code></pre>
+                    <div id="out4" class="terminal">> Всего задач в очереди: 3<br>> Текущая задача: бэкап базы данных</div>
                 </div>
                 <div class="footer"><button class="next-btn" onclick="done(4, 5)">Перейти к финалу</button></div>
             </div>
 
             <div id="p5" class="lesson-page">
                 <h2>Циклы (For)</h2>
-                <p>Главная сила кода — автоматизация рутины. Цикл <code>for</code> позволяет пройтись по всему списку и выполнить действие с каждым элементом. Давай протестируем сразу несколько ИИ-моделей.</p>
+                <p>Главная сила кода — автоматизация рутины. Цикл <code>for</code> позволяет пройтись по всему списку и выполнить действие с каждым элементом. Напишем скрипт для автоматического опроса датчиков пожарной безопасности.</p>
                 <div class="code-area">
-                    <div class="code-top"><span>benchmark.py</span> <button class="run-btn" onclick="run(5, this)">▶ ЗАПУСТИТЬ</button></div>
-                    <pre><code><span class="kw">models</span> <span class="op">=</span> [<span class="st">"ChatGPT"</span>, <span class="st">"Gemini"</span>, <span class="st">"Claude"</span>]
+                    <div class="code-top"><span>fire_safety_test.py</span> <button class="run-btn" onclick="run(5, this)">▶ ЗАПУСТИТЬ</button></div>
+                    <pre><code><span class="cm"># Список установленных датчиков</span>
+<span class="kw">sensors</span> <span class="op">=</span> [<span class="st">"Датчик дыма (Холл)"</span>, <span class="st">"Температура (Серверная)"</span>, <span class="st">"Система вентиляции"</span>]
 
-<span class="cm"># Цикл берет каждую модель из списка по очереди</span>
-<span class="kw">for</span> ai <span class="kw">in</span> models:
-    <span class="fn">print</span>(<span class="st">"Запуск тестов для модели:"</span>, ai)
+<span class="cm"># Цикл проверяет каждое устройство по очереди</span>
+<span class="kw">for</span> device <span class="kw">in</span> sensors:
+    <span class="fn">print</span>(<span class="st">"Тест связи:"</span>, device, <span class="st">"- ОК"</span>)
     
-<span class="fn">print</span>(<span class="st">"Все тесты успешно завершены."</span>)</code></pre>
-                    <div id="out5" class="terminal">> Запуск тестов для модели: ChatGPT<br>> Запуск тестов для модели: Gemini<br>> Запуск тестов для модели: Claude<br><span class="term-success">> Все тесты успешно завершены.</span></div>
+<span class="fn">print</span>(<span class="st">"Все системы пожарной безопасности функционируют штатно."</span>)</code></pre>
+                    <div id="out5" class="terminal">> Тест связи: Датчик дыма (Холл) - ОК<br>> Тест связи: Температура (Серверная) - ОК<br>> Тест связи: Система вентиляции - ОК<br><span class="term-success">> Все системы пожарной безопасности функционируют штатно.</span></div>
                 </div>
-                <div class="footer"><button class="next-btn" onclick="done(5, 'end')">Получить сертификат</button></div>
+                <div class="footer"><button class="next-btn" onclick="done(5, 'end')">Завершить курс</button></div>
             </div>
 
         </div>
     </main>
 
     <script>
-        // Всего уроков теперь 5
         const totalLessons = 5;
         let finished = new Set();
 
@@ -238,12 +236,11 @@
             document.getElementById('ni-' + n).classList.add('active');
             document.getElementById('lesson-title').innerText = lessonTitles[n - 1];
             
-            // Плавный скролл наверх
             document.getElementById('main-scroll').scrollTop = 0;
         }
 
         function run(id, btn) {
-            btn.innerText = '⚙ КОМПИЛЯЦИЯ...';
+            btn.innerText = '⚙ ВЫПОЛНЕНИЕ...';
             btn.style.opacity = '0.7';
             btn.disabled = true;
             
@@ -264,12 +261,12 @@
             document.getElementById('p-fill').style.width = percent + '%';
 
             if(next === 'end') {
-                alert("Курс успешно пройден! Базовые навыки работы с Python получены.");
+                alert("Курс успешно пройден! Доступ к административной панели разрешен.");
             } else {
                 jump(next);
             }
         }
     </script>
 </body>
-                                                                                                      </html>
-                                                                                                      
+                                          </html>
+                               
